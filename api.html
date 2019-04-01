@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="api.css">
+    
+</head>
+<header class = "header">
+    <nav>
+        <ul>
+            <a href=""><li>Home</li></a>
+            <a href=""><li>Trending</li></a>
+            <a href=""><li>Food</li></a>
+            <a href=""><li>Drinks</li></a>
+        </ul>
+    </nav>
+</header>
+<body>
+    <script>
+        let url ="https://cors-anywhere.herokuapp.com/http://www.recipepuppy.com/api";
+
+fetch(url)
+.then(r=>{
+    return r.json();
+
+})
+.then(data=>{
+    let obj = data.results;
+    let newList = document.createElement("ul");
+    let addBody = document.querySelector("body");
+    addBody.appendChild(newList);
+    obj.map(recipe=>{
+        let recipeItem = document.createElement("li");
+        recipeItem.innerHTML = '<a href="'+recipe.href+'">' +recipe.title
+        +recipe.title + '</a>';
+        addBody.appendChild(recipeItem);
+    });
+
+    
+})
+.catch(e=>{
+    console.log(`An error has been encountered${e}`);
+});    
+    </script>
+    
+</body>
+<footer class="footer">
+        <nav>
+            <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </nav>
+    </footer>
+</html>
